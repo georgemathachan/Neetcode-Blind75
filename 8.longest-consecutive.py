@@ -13,20 +13,21 @@ You must write an algorithm that runs in O(n) time.
 
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
-        num_set = set(nums)
-        longest = 0
-
-        for num in num_set:
-            # Only start counting if num is the start of a sequence
-            if num - 1 not in num_set:
-                current = num
-                streak = 1
-                while current + 1 in num_set:
-                    current += 1
-                    streak += 1
-                longest = max(longest, streak)
+        if not nums:
+            return 0
+        nums.sort()
+        count = 1
+        longest_count = 1
+        for i in range(1,len(nums)):
+            if nums[i] - nums[i-1] == 0:
+                continue 
+            if nums[i] - nums[i-1] == 1:
+                count += 1
+            else: 
+                longest_count = max(longest_count, count)
+                count = 1
         
-        return longest
+        return max(longest_count, count)
 
 
 # ---------------- TEST CASES ----------------
