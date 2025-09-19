@@ -19,7 +19,7 @@ class Solution:
         text = s.lower()
         clean_text = ''.join(char for char in text if char.isalnum())
         
-        for i in range(1, int(len(clean_text)/2) + (len(clean_text) % 2 > 0)):
+        for i in range(1, int(len(clean_text)+1/2) + (len(clean_text) % 2 > 0)):
             if clean_text[i-1] == clean_text[-i]:
                 continue
             else:
